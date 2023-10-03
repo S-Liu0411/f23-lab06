@@ -15,17 +15,69 @@ public class Frogger {
     private final Records records;
     private String firstName, lastName, phoneNumber, zipCode, state, gender;
 
-    public Frogger(Road road, int position, Records records, String firstName, String lastName, String phoneNumber,
-    String zipCode, String state, String gender) {
-        this.road = road;
-        this.position = position;
-        this.records = records;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.zipCode = zipCode;
-        this.state = state;
-        this.gender = gender;
+    // Use a Builder for the Frogger class
+    public class FroggerBuilder {
+        private final Road road;
+        private final Records records;
+        private int position;
+        private String firstName, lastName, phoneNumber, zipCode, state, gender;
+
+        public FroggerBuilder(Road road, Records records) {
+            this.road = road;
+            this.records = records;
+        }
+
+        public FroggerBuilder setPosition(int position) {
+            this.position = position;
+            return this;
+        }
+
+        public FroggerBuilder setFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public FroggerBuilder setLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public FroggerBuilder setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public FroggerBuilder setZipCode(String zipCode) {
+            this.zipCode = zipCode;
+            return this;
+        }
+
+        public FroggerBuilder setState(String state) {
+            this.state = state;
+            return this;
+        }
+
+        public FroggerBuilder setGender(String gender) {
+            this.gender = gender;
+            return this;
+        }
+
+        public Frogger build() {
+            return new Frogger(this);
+        }
+    }
+
+    // Private constructor for Frogger
+    private Frogger(FroggerBuilder builder) {
+        this.road = builder.road;
+        this.records = builder.records;
+        this.position = builder.position;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.phoneNumber = builder.phoneNumber;
+        this.zipCode = builder.zipCode;
+        this.state = builder.state;
+        this.gender = builder.gender;
     }
 
     /**
